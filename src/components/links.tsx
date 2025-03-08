@@ -2,6 +2,7 @@ import {
   IconType,
   SiGithub,
   SiGmail,
+  SiHashnode,
   SiLinkedin,
   SiMedium,
   SiSubstack,
@@ -39,7 +40,10 @@ const Links: FC = () => {
     {
       icon: SiX,
       href: 'https://x.com/1809157Gaurav',
-    },
+    },{
+      icon: SiHashnode,
+      href: 'https://javaexpert.hashnode.dev/',
+    }
   ]
 
   return (

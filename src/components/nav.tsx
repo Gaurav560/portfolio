@@ -26,6 +26,14 @@ const Nav: React.FC = () => {
     setIsOpen(!isOpen)
   }
 
+  // Sage Green color variants
+  const sageGreen = {
+    light: '#B2BEB5', // Sage Green (base)
+    medium: '#99A8A0', // Medium Sage Green (hover in light mode)
+    dark: '#7D8A82',   // Dark Sage Green (for dark mode)
+    darker: '#6A7569'  // Darker Sage Green (hover in dark mode)
+  }
+
   return (
     <>
       {/* Spacer div to prevent content from being hidden behind fixed navbar */}
@@ -33,10 +41,10 @@ const Nav: React.FC = () => {
       
       <div className="fixed top-0 z-50 w-full bg-bg backdrop-blur-lg bg-opacity-80">
         <div className="mx-auto max-w-7xl">
-          {/* Overlay for mobile menu */}
+          {/* Improved overlay for mobile menu - darker and with blur */}
           {isOpen && (
             <div
-              className="fixed inset-0 z-40 bg-black bg-opacity-50 lg:hidden"
+              className="fixed inset-0 z-40 bg-black bg-opacity-70 backdrop-blur-sm lg:hidden"
               onClick={toggleMenu}
             />
           )}
@@ -49,7 +57,7 @@ const Nav: React.FC = () => {
               </div>
             </Link>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Navigation - Keep original orange */}
             <nav className="hidden items-center gap-2 rounded-lg bg-orange-400 p-2 shadow-lg lg:flex">
               {links.map((link) => (
                 link.onClick ? (
@@ -77,46 +85,56 @@ const Nav: React.FC = () => {
               </div>
             </nav>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - Keep orange but slightly softer */}
             <button
-              className="text-gray-900 hover:text-orange-400 dark:text-white lg:hidden"
+              className="rounded-full bg-orange-400 p-2 text-gray-900 hover:bg-orange-300 lg:hidden"
               onClick={toggleMenu}
+              aria-label="Toggle menu"
             >
               <Menu size={24} />
             </button>
           </div>
 
-          {/* Mobile Sidebar */}
+          {/* Mobile Sidebar - With Sage Green buttons */}
           <div
             className={clsx(
-              'fixed right-0 top-0 z-50 h-full w-64 transform border-l transition-transform duration-300 ease-in-out lg:hidden',
-              'bg-white dark:bg-gray-900',
-              'border-gray-200 dark:border-gray-800',
+              'fixed right-0 top-0 z-50 h-full w-72 transform transition-transform duration-300 ease-in-out lg:hidden',
+              'bg-white shadow-2xl dark:bg-gray-900 dark:border-gray-800 dark:border-l',
               isOpen ? 'translate-x-0' : 'translate-x-full',
             )}
           >
-            <div className="p-4">
+            <div className="flex h-full flex-col p-6">
               <div className="mb-8 flex items-center justify-between">
-                <span className="text-lg font-bold text-gray-900 dark:text-white">
+                <span className="text-xl font-bold text-gray-900 dark:text-white">
                   Menu
                 </span>
                 <button
-                  className="text-gray-900 hover:text-orange-400 dark:text-white"
+                  className="rounded-full bg-gray-200 p-2 text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
                   onClick={toggleMenu}
+                  aria-label="Close menu"
                 >
                   <X size={24} />
                 </button>
               </div>
+              
               <nav className="flex flex-col gap-4">
                 {links.map((link) => (
                   link.onClick ? (
                     <button
                       key={link.text}
-                      onClick={link.onClick}
+                      onClick={() => {
+                        toggleMenu();
+                        link.onClick && link.onClick();
+                      }}
+                      style={{
+                        backgroundColor: sageGreen.light,
+                      }}
                       className={clsx(
-                        'rounded-md px-4 py-2 text-center font-medium transition-colors',
-                        'text-gray-900 hover:bg-gray-100 hover:font-bold dark:text-white dark:hover:bg-gray-800',
+                        'rounded-md px-6 py-3 text-center text-lg font-medium transition-colors',
+                        'text-gray-900 dark:text-white',
                       )}
+                      onMouseOver={(e) => e.currentTarget.style.backgroundColor = sageGreen.medium}
+                      onMouseOut={(e) => e.currentTarget.style.backgroundColor = sageGreen.light}
                     >
                       {link.text}
                     </button>
@@ -124,21 +142,28 @@ const Nav: React.FC = () => {
                     <a
                       key={link.path}
                       href={link.path}
+                      onClick={toggleMenu}
+                      style={{
+                        backgroundColor: sageGreen.light,
+                      }}
                       className={clsx(
-                        'rounded-md px-4 py-2 text-center font-medium transition-colors',
-                        'text-gray-900 hover:bg-gray-100 hover:font-bold dark:text-white dark:hover:bg-gray-800',
+                        'rounded-md px-6 py-3 text-center text-lg font-medium transition-colors',
+                        'text-gray-900 dark:text-white',
                       )}
+                      onMouseOver={(e) => e.currentTarget.style.backgroundColor = sageGreen.medium}
+                      onMouseOut={(e) => e.currentTarget.style.backgroundColor = sageGreen.light}
                     >
                       {link.text}
                     </a>
                   )
                 ))}
-                <div className="mt-4 flex justify-center">
-                  <div className="rounded-md bg-gray-100 p-2 dark:bg-gray-800">
-                    <ThemeSwitcher />
-                  </div>
-                </div>
               </nav>
+              
+              <div className="mt-auto flex justify-center pb-8">
+                <div className="rounded-full bg-gray-200 p-3 dark:bg-gray-700">
+                  <ThemeSwitcher />
+                </div>
+              </div>
             </div>
           </div>
         </div>

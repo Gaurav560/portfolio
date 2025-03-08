@@ -32,18 +32,18 @@ const AnimatedBackground: React.FC = () => {
       pulseSpeed: number
     }[] = []
     
-    // Create softer-colored bubbles with different sizes
+    // Create more vivid colored bubbles with different sizes - UPDATED COLORS
     const bubbleBaseColors = [
-      'rgba(99, 102, 241,', // Indigo
-      'rgba(129, 140, 248,', // Lighter indigo
-      'rgba(147, 197, 253,', // Light blue
-      'rgba(139, 92, 246,', // Purple
-      'rgba(167, 139, 250,', // Lighter purple
+      'rgba(255, 111, 97,', // Vivid coral
+      'rgba(255, 163, 26,', // Bright orange
+      'rgba(255, 215, 0,',  // Gold
+      'rgba(252, 128, 165,', // Hot pink
+      'rgba(238, 130, 238,', // Violet
     ]
     
     // Create more bubbles (30-50 for good density)
     for (let i = 0; i < 40; i++) {
-      const alphaValue = Math.random() * 0.5 + 0.1;
+      const alphaValue = Math.random() * 0.5 + 0.2; // Slightly higher alpha for more vividness
       const baseColor = bubbleBaseColors[Math.floor(Math.random() * bubbleBaseColors.length)];
       const color = baseColor + ' ' + alphaValue + ')';
       
@@ -60,9 +60,13 @@ const AnimatedBackground: React.FC = () => {
       })
     }
     
-    // Large glowing orbs in background
+    // Large glowing orbs in background - UPDATED COLORS
     const orbs: { x: number; y: number; radius: number; color: string; speed: number }[] = []
-    const orbColors = ['rgba(99, 102, 241, 0.08)', 'rgba(139, 92, 246, 0.07)', 'rgba(147, 197, 253, 0.06)']
+    const orbColors = [
+      'rgba(255, 111, 97, 0.1)', // Coral
+      'rgba(255, 163, 26, 0.09)', // Orange
+      'rgba(252, 128, 165, 0.1)', // Pink
+    ]
     
     for (let i = 0; i < 3; i++) {
       orbs.push({
@@ -118,21 +122,21 @@ const AnimatedBackground: React.FC = () => {
         const colorBase = baseColorParts.slice(0, 3).join(',') + ',';
         
         // Create modified colors with proper rgba format
-        const innerAlpha = Math.min(bubble.alphaValue * 1.5, 1);
+        const innerAlpha = Math.min(bubble.alphaValue * 1.8, 1); // More intense inner glow
         gradient.addColorStop(0, `${colorBase} ${innerAlpha})`);
         gradient.addColorStop(0.6, bubble.color);
-        gradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
+        gradient.addColorStop(1, 'rgba(255, 215, 0, 0)'); // Gold fade out
         
         ctx.fillStyle = gradient
         ctx.beginPath()
         ctx.arc(bubble.x, bubble.y, currentSize, 0, Math.PI * 2)
         ctx.fill()
         
-        // Add subtle glow
-        ctx.shadowColor = 'rgba(99, 102, 241, 0.3)'
-        ctx.shadowBlur = 10
+        // Add enhanced glow effect
+        ctx.shadowColor = 'rgba(255, 215, 0, 0.4)' // Golden glow
+        ctx.shadowBlur = 15 // Increased blur for more dramatic effect
         ctx.beginPath()
-        ctx.arc(bubble.x, bubble.y, currentSize * 0.3, 0, Math.PI * 2)
+        ctx.arc(bubble.x, bubble.y, currentSize * 0.4, 0, Math.PI * 2)
         ctx.fill()
         ctx.shadowBlur = 0
         
