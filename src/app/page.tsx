@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { ChevronDown } from 'lucide-react'
 import memeImage from './assets/itachi.gif'
 
-// Enhanced animated background with bubbles
+// Enhanced animated background with updated colors
 const AnimatedBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   
@@ -32,13 +32,13 @@ const AnimatedBackground: React.FC = () => {
       pulseSpeed: number
     }[] = []
     
-    // Create softer-colored bubbles with different sizes
+    // Updated bubble colors to whitish, orangish, yellowish
     const bubbleBaseColors = [
-      'rgba(99, 102, 241,', // Indigo
-      'rgba(129, 140, 248,', // Lighter indigo
-      'rgba(147, 197, 253,', // Light blue
-      'rgba(139, 92, 246,', // Purple
-      'rgba(167, 139, 250,', // Lighter purple
+      'rgba(255, 255, 255,', // White
+      'rgba(253, 230, 200,', // Light Orange/Cream
+      'rgba(255, 159, 64,', // Medium Orange
+      'rgba(251, 191, 36,', // Amber/Yellow
+      'rgba(255, 215, 120,', // Gold
     ]
     
     // Create more bubbles (30-50 for good density)
@@ -60,9 +60,13 @@ const AnimatedBackground: React.FC = () => {
       })
     }
     
-    // Large glowing orbs in background
+    // Updated background orbs colors to match new theme
     const orbs: { x: number; y: number; radius: number; color: string; speed: number }[] = []
-    const orbColors = ['rgba(99, 102, 241, 0.08)', 'rgba(139, 92, 246, 0.07)', 'rgba(147, 197, 253, 0.06)']
+    const orbColors = [
+      'rgba(255, 159, 64, 0.08)', // Orange
+      'rgba(251, 191, 36, 0.07)', // Amber
+      'rgba(255, 255, 255, 0.06)'  // White
+    ]
     
     for (let i = 0; i < 3; i++) {
       orbs.push({
@@ -121,15 +125,15 @@ const AnimatedBackground: React.FC = () => {
         const innerAlpha = Math.min(bubble.alphaValue * 1.5, 1);
         gradient.addColorStop(0, `${colorBase} ${innerAlpha})`);
         gradient.addColorStop(0.6, bubble.color);
-        gradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
+        gradient.addColorStop(1, 'rgba(255, 159, 64, 0)'); // Updated to orange fade out
         
         ctx.fillStyle = gradient
         ctx.beginPath()
         ctx.arc(bubble.x, bubble.y, currentSize, 0, Math.PI * 2)
         ctx.fill()
         
-        // Add subtle glow
-        ctx.shadowColor = 'rgba(99, 102, 241, 0.3)'
+        // Add subtle glow with updated color
+        ctx.shadowColor = 'rgba(255, 159, 64, 0.3)' // Orange glow
         ctx.shadowBlur = 10
         ctx.beginPath()
         ctx.arc(bubble.x, bubble.y, currentSize * 0.3, 0, Math.PI * 2)
@@ -223,7 +227,7 @@ const TypingText: React.FC<TypingTextProps> = ({
       return (
         <>
           {parts[0]}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-500 font-extrabold">
+          <span className="text-amber-400 font-extrabold">
             Gaurav
           </span>
           {parts[1]}
@@ -240,10 +244,10 @@ const TypingText: React.FC<TypingTextProps> = ({
   )
 }
 
-// Skill tag with softer color
+// Updated Skill tag with orange color
 const SkillTag: React.FC<{ text: string }> = ({ text }) => {
   return (
-    <div className="relative overflow-hidden rounded-full px-4 py-2 m-1 bg-indigo-600 text-white font-medium shadow-lg hover:scale-105 transition-transform cursor-default">
+    <div className="relative overflow-hidden rounded-full px-4 py-2 m-1 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-medium shadow-lg hover:scale-105 transition-transform cursor-default">
       {text}
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-20 animate-shimmer" style={{ backgroundSize: '200% 100%' }}></div>
     </div>
@@ -253,7 +257,7 @@ const SkillTag: React.FC<{ text: string }> = ({ text }) => {
 // Scroll down indicator with updated color
 const ScrollIndicator: React.FC = () => {
   return (
-    <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-indigo-300/70 animate-bounce">
+    <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-orange-300/70 animate-bounce">
       <span className="mb-2 text-sm">Scroll Down</span>
       <ChevronDown size={20} />
     </div>
@@ -309,9 +313,9 @@ const HomePage = () => {
         <div className="mx-auto min-h-screen w-full max-w-7xl flex flex-col items-center justify-center relative px-4 sm:px-6">
           {/* Character with updated glow effect */}
           <div className="mb-8 relative">
-            <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-indigo-600 via-purple-500 to-blue-600 opacity-60 blur-xl animate-pulse"></div>
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 opacity-30 animate-spin-slow blur-md"></div>
-            <div className="relative mx-auto h-[180px] w-[180px] sm:h-[220px] sm:w-[220px] md:h-[300px] md:w-[300px] overflow-hidden rounded-full border-2 border-indigo-500">
+            <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-400 opacity-60 blur-xl animate-pulse"></div>
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400 via-orange-500 to-amber-600 opacity-30 animate-spin-slow blur-md"></div>
+            <div className="relative mx-auto h-[180px] w-[180px] sm:h-[220px] sm:w-[220px] md:h-[300px] md:w-[300px] overflow-hidden rounded-full border-2 border-orange-500">
               <Image
                 src={memeImage}
                 alt="itachi-gif"
@@ -324,7 +328,7 @@ const HomePage = () => {
 
           {/* Text messages with updated backdrop */}
           <div className="z-10 my-4 md:my-8 w-full max-w-lg">
-            <div className="p-4 md:p-6 rounded-xl backdrop-blur-sm bg-black/30 border border-indigo-500/30 shadow-xl">
+            <div className="p-4 md:p-6 rounded-xl backdrop-blur-sm bg-black/30 border border-orange-500/30 shadow-xl">
               <div className="text-xl sm:text-2xl md:text-3xl font-bold tracking-wider space-y-3 md:space-y-4">
                 <TypingText
                   text={textSequence[0].text}
@@ -370,9 +374,9 @@ const HomePage = () => {
           {showSkills && (
             <div className="mt-4 z-10 w-full max-w-2xl animate-fadeIn">
               <div className="text-center mb-4">
-                <h3 className="text-lg sm:text-xl font-semibold text-indigo-300">My tech stack:</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-orange-400">My tech stack:</h3>
               </div>
-              <div className="flex flex-wrap justify-center gap-2 p-3 sm:p-4 rounded-xl backdrop-blur-sm bg-black/20 border border-indigo-500/20">
+              <div className="flex flex-wrap justify-center gap-2 p-3 sm:p-4 rounded-xl backdrop-blur-sm bg-black/30 border border-orange-500/30">
                 {skills.map((skill) => (
                   <SkillTag key={skill} text={skill} />
                 ))}
