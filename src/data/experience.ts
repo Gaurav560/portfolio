@@ -13,7 +13,7 @@ const PAST_ROLES: {
     role: 'Backend Developer (Java & Spring Boot)',
     description:
       'Led the development of a real-time, bi-directional application(in house product) for the currently working EdTech startup, leveraging a tech stack that includes WebSocket with STOMP, Spring Web, Spring Data JPA, Docker, Redis Cloud, and more. Managed a team of three in the development, testing, and deployment process. Conducted functional and load testing using Selenium scripts in both head and headless modes, with LambdaTest and JMeter for scalability and reliability. Reduced latency for US clients by 40% with AWS Global Accelerator and edge locations. Integrated Spring AI with Anthropic API to dynamically generate data. Designed and implemented the entire backend architecture, utilizing RDS for PostgreSQL and an in-memory message broker for real-time communication. Set up AWS CloudWatch for detailed monitoring of CPU utilization, RAM usage, Spring Boot backend logs, and RDS for PostgreSQL, optimizing performance and resource allocation. Leveraged the serverless Fargate pay-as-you-go model to efficiently manage costs. Successfully delivered the MVP within 180 days',
-    startDate: 'August 2024',
+    startDate: 'November 2023',
     endDate: 'Present',
     link: 'https://www.telusko.com/',
   },

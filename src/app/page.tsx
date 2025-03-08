@@ -281,9 +281,9 @@ const HomePage = () => {
   }, [])
 
   const textSequence = [
-    { text: 'Hello Stranger', delay: 0 },
-    { text: 'Nice to Meet you', delay: 500 },
-    { text: 'My Name is Gaurav', delay: 500 },
+    { text: 'Hello stranger', delay: 0 },
+    { text: 'Nice to meet you', delay: 500 },
+    { text: 'My name is Gaurav', delay: 500 },
     { text: 'Welcome to my', delay: 500 },
     { text: 'realm ;)', delay: 300 },
   ]
