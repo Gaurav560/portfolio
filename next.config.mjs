@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [],
+    domains: ['tenor.com', 'media.tenor.com', 'c.tenor.com', 'media1.tenor.com'],
   },
   webpack: (config) => {
     config.resolve.fallback = {
