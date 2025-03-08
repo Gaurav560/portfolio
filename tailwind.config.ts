@@ -15,7 +15,7 @@ const config: Config = {
         overlay: 'rgba(0,0,0,0.8)',
 
         // light mode
-        bg: 'linear-gradient(to bottom, #1a1a1a, #2d2d2d)', // Changed to black gradient
+        bg: 'linear-gradient(to bottom, #1a1a1a, #2d2d2d)',
         text: '#000',
         border: '#000',
 
@@ -26,7 +26,7 @@ const config: Config = {
         secondaryBlack: '#212121',
       },
       backgroundImage: {
-        'gradient-bg': 'linear-gradient(to bottom, #1a1a1a, #2d2d2d)', // Add this for proper gradient support
+        'gradient-bg': 'linear-gradient(to bottom, #1a1a1a, #2d2d2d)',
       },
       borderRadius: {
         base: '5px',
@@ -47,6 +47,22 @@ const config: Config = {
       },
       screens: {
         w450: { raw: '(max-width: 450px)' },
+      },
+      animation: {
+        'spin-slow': 'spin 8s linear infinite',
+        'fadeIn': 'fadeIn 1s ease-in forwards',
+        'shimmer': 'shimmer 2s infinite',
+        'pulse': 'pulse 3s infinite',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '200% 0' },
+          '100%': { backgroundPosition: '-200% 0' },
+        }
       },
     },
   },
