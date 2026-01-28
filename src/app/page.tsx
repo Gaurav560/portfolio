@@ -148,7 +148,7 @@ export default function HomePage() {
               </div>
               
               {/* Profile Image - Desktop only */}
-              <div className="hidden md:block flex-shrink-0 mb-4 -mt-2">
+              <div className="hidden md:block flex-shrink-0 mb-4 -mt-8">
                 <div className="w-44 h-44 rounded-2xl overflow-hidden shadow-2xl hover:shadow-[var(--accent)]/20 transition-shadow duration-500">
                   <img
                     src="https://avatars.githubusercontent.com/u/50236270"
