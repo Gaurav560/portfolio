@@ -127,7 +127,7 @@ export default function HomePage() {
         <div className="flex flex-col-reverse md:flex-row md:items-start md:justify-between gap-10 md:gap-16">
           <div className="flex-1">
             <h1 className="font-serif text-4xl md:text-[3.5rem] font-normal text-[var(--text-primary)] mb-5 leading-tight italic">
-              Hey, I am Gaurav Sh.
+              Hey, I am Gaurav
             </h1>
             <h2 className="text-xl md:text-2xl mb-8 text-[var(--accent)] font-serif italic tracking-tight leading-relaxed">
               backend systems, java, and spring boot. always building.
@@ -404,7 +404,7 @@ export default function HomePage() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`text-[var(--text-faint)] transition-colors ${link.color}`}
+                  className="text-[var(--text-faint)] hover:text-[var(--accent)] transition-colors"
                 >
                   <link.icon size={18} />
                 </a>
