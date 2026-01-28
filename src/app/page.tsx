@@ -124,16 +124,42 @@ export default function HomePage() {
       <div className="mx-auto max-w-4xl px-6 py-16 md:py-24">
         
         {/* Hero Section */}
-        <div className="flex flex-col-reverse md:flex-row md:items-start md:justify-between gap-10 md:gap-16">
-          <div className="flex-1">
-            <h1 className="font-serif text-4xl md:text-[3.5rem] font-normal text-[var(--text-primary)] mb-5 leading-tight italic">
-              Hey, I am Gaurav
-            </h1>
-            <h2 className="text-xl md:text-2xl mb-8 text-[var(--accent)] font-serif italic tracking-tight leading-relaxed">
-              backend systems, java, and spring boot. always building.
-            </h2>
+        <div className="flex flex-col items-center md:items-start gap-10">
+          {/* Profile Image - Top on mobile, side on desktop */}
+          <div className="md:hidden">
+            <div className="w-32 h-32 rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src="https://avatars.githubusercontent.com/u/50236270"
+                alt="Gaurav"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
+          <div className="w-full">
+            <div className="flex items-start justify-between gap-12">
+              <div className="flex-1">
+                <h1 className="font-serif text-4xl md:text-[3.5rem] font-normal text-[var(--text-primary)] mb-5 leading-tight italic">
+                  Hey, I am Gaurav
+                </h1>
+                <h2 className="text-xl md:text-2xl mb-8 text-[var(--accent)] font-serif italic tracking-tight">
+                  backend systems, java, and spring boot. always building.
+                </h2>
+              </div>
+              
+              {/* Profile Image - Desktop only */}
+              <div className="hidden md:block flex-shrink-0 mb-4 -mt-2">
+                <div className="w-44 h-44 rounded-2xl overflow-hidden shadow-2xl hover:shadow-[var(--accent)]/20 transition-shadow duration-500">
+                  <img
+                    src="https://avatars.githubusercontent.com/u/50236270"
+                    alt="Gaurav"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              </div>
+            </div>
             
-            {/* Bio */}
+            {/* Bio - Fixed width for consistent alignment */}
             <div className="text-[var(--text-secondary)] leading-[1.85] space-y-5 text-[15px] mb-10">
               <p>
                 I am a software engineer passionate about <span className="text-[var(--accent)] font-medium">Backend Systems</span> and{' '}
@@ -179,25 +205,14 @@ export default function HomePage() {
             {/* Hire Me CTA Button - Brutalist Style */}
             <a
               href="#contact"
-              className="brutalist-button mt-6 sm:mt-8"
+              className="brutalist-button mt-6 sm:mt-8 justify-center"
             >
               <div className="hire-icon">💼</div>
-              <div className="button-text">
+              <div className="button-text text-center">
                 <span>Open to Work</span>
                 <span>Hire Me!</span>
               </div>
             </a>
-          </div>
-
-          {/* Profile Image */}
-          <div className="flex-shrink-0 mx-auto md:mx-0">
-            <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-52 md:h-52 rounded-2xl overflow-hidden shadow-2xl hover:shadow-[var(--accent)]/20 transition-shadow duration-500">
-              <img
-                src="https://avatars.githubusercontent.com/u/50236270"
-                alt="Gaurav"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-              />
-            </div>
           </div>
         </div>
         
