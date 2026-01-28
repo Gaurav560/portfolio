@@ -1,18 +1,24 @@
 import type { Metadata } from 'next'
-import { Montserrat } from 'next/font/google'
+import { Source_Serif_4, Inter } from 'next/font/google'
 import './globals.css'
-import Nav from '@/components/nav'
-import Links from '@/components/links'
-import { ViewTransitions } from 'next-view-transitions'
 import { ThemeProvider } from '@/components/theme-provider'
-import './assets/favicon.ico'
 
-const montserrat = Montserrat({ subsets: ['latin'] })
+const sourceSerif = Source_Serif_4({ 
+  subsets: ['latin'],
+  variable: '--font-serif',
+  display: 'swap',
+})
+
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   manifest: '/manifest.json',
-  title: 'Gaurav Sh <Backend Nerd>',
-  description: 'Proof of Work is the proof of time spent on work.',
+  title: 'Gaurav | Backend Engineer',
+  description: 'Software Engineer passionate about Backend Systems and System Architecture.',
 }
 
 export default function RootLayout({
@@ -21,18 +27,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ViewTransitions>
-      <html lang="en">
-        <body className={montserrat.className}>
-          <ThemeProvider attribute="class" disableTransitionOnChange>
-            <Nav />
-            <div className="text-text dark:text-darkText mx-auto w-[750px] max-w-full px-5 pb-10 pt-28">
-              {children}
-            </div>
-            <Links />
-          </ThemeProvider>
-        </body>
-      </html>
-    </ViewTransitions>
+    <html lang="en" className={`${sourceSerif.variable} ${inter.variable}`} suppressHydrationWarning>
+      <body className="font-sans">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
   )
 }

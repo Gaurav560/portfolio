@@ -2,36 +2,83 @@
 @tailwind components;
 @tailwind utilities;
 
-
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-body {
-  @apply dark:bg-darkBg bg-bg;
+html {
+  scroll-behavior: smooth;
+}
+
+/* Light theme (Arpit Bhayani style) */
+:root {
+  --bg: #f5f0e8;
+  --bg-secondary: #ebe5db;
+  --bg-card: #e8e2d8;
+  --text-primary: #2d2d2d;
+  --text-secondary: #555555;
+  --text-muted: #777777;
+  --text-faint: #999999;
+  --accent: #e07c4a;
+  --link: #2563eb;
+  --border: #d4cfc5;
+  --border-hover: #c4bfb5;
+}
+
+/* Dark theme */
+.dark {
+  --bg: #1a1a1a;
+  --bg-secondary: #222222;
+  --bg-card: #2a2a2a;
+  --text-primary: #f5f5f5;
+  --text-secondary: #e8e6e3;
+  --text-muted: #999999;
+  --text-faint: #666666;
+  --accent: #e07c4a;
+  --link: #6b9bd2;
+  --border: #333333;
+  --border-hover: #444444;
 }
 
 body {
-  --sb-track-color: #ffffff;
-  --sb-thumb-color: #000000;
+  background-color: var(--bg);
+  color: var(--text-secondary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.font-serif {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+.font-sans {
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Custom scrollbar */
 body::-webkit-scrollbar {
-  width: 16px;
+  width: 8px;
 }
 
 body::-webkit-scrollbar-track {
-  background: var(--sb-track-color);
+  background: #1a1a1a;
 }
 
 body::-webkit-scrollbar-thumb {
-  background: var(--sb-thumb-color);
+  background: #333;
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #444;
 }
 
 @supports not selector(::-webkit-scrollbar) {
   body {
-    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+    scrollbar-color: #333 #1a1a1a;
   }
 }
