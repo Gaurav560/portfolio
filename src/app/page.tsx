@@ -106,21 +106,6 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen bg-[var(--bg)] text-[var(--text-secondary)]">
-      {/* Theme Toggle */}
-      {mounted && (
-        <button
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          className="fixed top-6 right-6 z-50 p-3 rounded-full bg-[var(--bg-secondary)] border border-[var(--border)] hover:border-[var(--accent)] hover:rotate-180 transition-all duration-500"
-          aria-label="Toggle theme"
-        >
-          {theme === 'dark' ? (
-            <Sun size={20} className="text-[var(--accent)]" />
-          ) : (
-            <Moon size={20} className="text-[var(--accent)]" />
-          )}
-        </button>
-      )}
-
       <div className="mx-auto max-w-4xl px-6 py-16 md:py-24">
         
         {/* Hero Section */}
