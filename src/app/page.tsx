@@ -305,10 +305,15 @@ export default function HomePage() {
 
               <button
                 onClick={handleEmailClick}
-                className="mt-6 inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-3.5 bg-[#2bd2a6] hover:bg-[#25b892] text-[#1a1a1a] font-bold rounded-full transition-all hover:-translate-y-1 hover:shadow-xl text-sm sm:text-base"
+                className="brutalist-button mt-6 w-full"
               >
-                <Mail size={18} className="sm:w-5 sm:h-5" />
-                <span>hey@gauravsh.in</span>
+                <div className="flex items-center justify-center gap-6 w-full">
+                  <div className="flex items-center gap-3">
+                    <span className="text-xl">✉️</span>
+                    <span className="text-sm uppercase tracking-wide">Drop a mail</span>
+                  </div>
+                  <span className="font-bold text-base">hey@gauravsh.in</span>
+                </div>
               </button>
             </div>
           </div>

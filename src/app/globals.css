@@ -121,8 +121,11 @@ html {
 
 .button-text span:last-child {
   font-size: 16px;
-  text-transform: uppercase;
   font-weight: 900;
+}
+
+.button-text.no-uppercase span {
+  text-transform: none;
 }
 
 /* Light theme (Arpit Bhayani style) */
