@@ -110,13 +110,13 @@ export default function HomePage() {
       {mounted && (
         <button
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          className="fixed top-6 right-6 z-50 p-3 rounded-full bg-[var(--bg-secondary)] border border-[var(--border)] hover:border-[var(--border-hover)] transition-all"
+          className="fixed top-6 right-6 z-50 p-3 rounded-full bg-[var(--bg-secondary)] border border-[var(--border)] hover:border-[var(--accent)] hover:rotate-180 transition-all duration-500"
           aria-label="Toggle theme"
         >
           {theme === 'dark' ? (
-            <Sun size={20} className="text-[var(--text-primary)]" />
+            <Sun size={20} className="text-[var(--accent)]" />
           ) : (
-            <Moon size={20} className="text-[var(--text-primary)]" />
+            <Moon size={20} className="text-[var(--accent)]" />
           )}
         </button>
       )}
@@ -126,75 +126,103 @@ export default function HomePage() {
         {/* Hero Section */}
         <div className="flex flex-col-reverse md:flex-row md:items-start md:justify-between gap-10 md:gap-16">
           <div className="flex-1">
-            <h1 className="font-serif text-4xl md:text-[3.2rem] font-normal text-[var(--text-primary)] mb-5 leading-tight italic">
+            <h1 className="font-serif text-4xl md:text-[3.5rem] font-normal text-[var(--text-primary)] mb-5 leading-tight italic">
               Hey, I am Gaurav
             </h1>
-            <h2 className="text-lg md:text-xl font-semibold mb-8 text-[var(--accent)]">
+            <h2 className="text-xl md:text-2xl mb-8 text-[var(--accent)] font-serif italic tracking-tight leading-relaxed">
               backend systems, java, and spring boot. always building.
             </h2>
             
-            {/* Bio - moved here like Arpit's */}
-            <div className="text-[var(--text-secondary)] leading-[1.8] space-y-5 text-[15px] mb-8">
+            {/* Bio */}
+            <div className="text-[var(--text-secondary)] leading-[1.85] space-y-5 text-[15px] mb-10">
               <p>
-                I am a software engineer passionate about <span className="text-[var(--accent)]">Backend Systems</span> and{' '}
-                <span className="text-[var(--accent)]">System Architecture</span>. Currently working as a Backend Developer, 
+                I am a software engineer passionate about <span className="text-[var(--accent)] font-medium">Backend Systems</span> and{' '}
+                <span className="text-[var(--accent)] font-medium">System Architecture</span>. Currently working as a Backend Developer, 
                 building real-time applications with Java, Spring Boot, and distributed systems.
               </p>
               <p>
                 I also spend time on technical writing, publishing{' '}
-                <a href="https://www.unlogged.io/blog" target="_blank" rel="noopener noreferrer" className="text-[var(--link)] hover:underline">my work on Unlogged</a>. 
+                <a href="https://www.unlogged.io/blog" target="_blank" rel="noopener noreferrer" className="text-[var(--link)] hover:underline font-medium">my work on Unlogged</a>. 
                 My areas of interest include databases, system design, and distributed systems.
               </p>
               <p>
                 I keep diving deep into engineering details and share my learnings across my{' '}
-                <a href="https://techinsightsbygaurav.substack.com/" target="_blank" rel="noopener noreferrer" className="text-[var(--link)] hover:underline">Substack</a>
+                <a href="https://techinsightsbygaurav.substack.com/" target="_blank" rel="noopener noreferrer" className="text-[var(--link)] hover:underline font-medium">Substack</a>
                 {' '}and{' '}
-                <a href="https://medium.com/@1809157_26884" target="_blank" rel="noopener noreferrer" className="text-[var(--link)] hover:underline">Medium</a>.
+                <a href="https://medium.com/@1809157_26884" target="_blank" rel="noopener noreferrer" className="text-[var(--link)] hover:underline font-medium">Medium</a>.
               </p>
             </div>
 
-            {/* Social Links */}
-            <div className="flex flex-wrap gap-2">
-              {socialLinks.map((link) => (
+            {/* Social Links - All in one row, responsive */}
+            <div className="flex flex-wrap gap-2 sm:gap-2.5">
+              {socialLinks.map((link, idx) => (
                 <a
                   key={link.label}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] hover:border-[var(--border-hover)] transition-all text-sm"
+                  className={`group flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-full border text-xs sm:text-sm font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg ${
+                    idx === 0 ? 'hover:border-gray-500 hover:bg-gray-800 dark:hover:bg-gray-700 hover:text-white' :
+                    idx === 1 ? 'hover:border-blue-400 hover:bg-blue-500/10 hover:text-blue-500 dark:hover:text-blue-400' :
+                    idx === 2 ? 'hover:border-blue-600 hover:bg-blue-600/10 hover:text-blue-600' :
+                    idx === 3 ? 'hover:border-green-500 hover:bg-green-500/10 hover:text-green-500' :
+                    idx === 4 ? 'hover:border-orange-500 hover:bg-orange-500/10 hover:text-orange-500' :
+                    'hover:border-blue-500 hover:bg-blue-500/10 hover:text-blue-500'
+                  } border-[var(--border)] text-[var(--text-secondary)]`}
                 >
-                  <link.icon size={15} />
-                  <span>{link.label}</span>
+                  <link.icon size={14} className="sm:w-4 sm:h-4 transition-transform group-hover:scale-110" />
+                  <span className="hidden xs:inline sm:inline">{link.label}</span>
                 </a>
               ))}
             </div>
+
+            {/* Hire Me CTA Button - Brutalist Style */}
+            <a
+              href="#contact"
+              className="brutalist-button mt-6 sm:mt-8"
+            >
+              <div className="hire-icon">💼</div>
+              <div className="button-text">
+                <span>Open to Work</span>
+                <span>Hire Me!</span>
+              </div>
+            </a>
           </div>
 
           {/* Profile Image */}
-          <div className="flex-shrink-0">
-            <div className="w-40 h-40 md:w-56 md:h-56 rounded-xl overflow-hidden shadow-2xl">
+          <div className="flex-shrink-0 mx-auto md:mx-0">
+            <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-52 md:h-52 rounded-2xl overflow-hidden shadow-2xl hover:shadow-[var(--accent)]/20 transition-shadow duration-500">
               <img
                 src="https://avatars.githubusercontent.com/u/50236270"
                 alt="Gaurav"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
           </div>
         </div>
-
-        {/* About Section - removed since we moved bio to hero */}
         
-        {/* Skills Section */}
+        {/* Skills Section - Magic Colorful Buttons */}
         <section className="mt-20">
           <h3 className="font-serif text-2xl text-[var(--text-primary)] italic mb-6">Skills</h3>
           <div className="flex flex-wrap gap-3">
-            {skills.map((skill) => (
+            {skills.map((skill, idx) => (
               <div
                 key={skill.name}
-                className="flex items-center gap-2 px-4 py-2 bg-[var(--bg-secondary)] rounded-lg border border-[var(--border)] text-[var(--text-secondary)]"
+                className={`group flex items-center gap-2.5 px-4 py-2.5 rounded-xl border cursor-default transition-all duration-300 hover:scale-105 hover:shadow-lg ${
+                  idx === 0 ? 'hover:border-red-500 hover:bg-red-500/10 hover:text-red-500 dark:hover:text-red-400' :
+                  idx === 1 ? 'hover:border-green-500 hover:bg-green-500/10 hover:text-green-600 dark:hover:text-green-400' :
+                  idx === 2 ? 'hover:border-blue-500 hover:bg-blue-500/10 hover:text-blue-600 dark:hover:text-blue-400' :
+                  idx === 3 ? 'hover:border-red-600 hover:bg-red-600/10 hover:text-red-600 dark:hover:text-red-400' :
+                  idx === 4 ? 'hover:border-purple-500 hover:bg-purple-500/10 hover:text-purple-600 dark:hover:text-purple-400' :
+                  idx === 5 ? 'hover:border-sky-500 hover:bg-sky-500/10 hover:text-sky-600 dark:hover:text-sky-400' :
+                  idx === 6 ? 'hover:border-blue-600 hover:bg-blue-600/10 hover:text-blue-600 dark:hover:text-blue-400' :
+                  idx === 7 ? 'hover:border-orange-500 hover:bg-orange-500/10 hover:text-orange-500' :
+                  idx === 8 ? 'hover:border-violet-500 hover:bg-violet-500/10 hover:text-violet-600 dark:hover:text-violet-400' :
+                  'hover:border-yellow-500 hover:bg-yellow-500/10 hover:text-yellow-600 dark:hover:text-yellow-400'
+                } border-[var(--border)] bg-[var(--bg-secondary)] text-[var(--text-secondary)]`}
               >
-                <skill.icon size={18} />
-                <span className="text-sm">{skill.name}</span>
+                <skill.icon size={20} className="transition-transform group-hover:scale-110 group-hover:rotate-12" />
+                <span className="text-sm font-medium">{skill.name}</span>
               </div>
             ))}
           </div>
@@ -205,11 +233,11 @@ export default function HomePage() {
           <h3 className="font-serif text-2xl text-[var(--text-primary)] italic mb-8">Experience</h3>
           <div className="space-y-10">
             {experiences.map((exp, idx) => (
-              <div key={idx}>
+              <div key={idx} className="group pl-6 border-l-2 border-[var(--border)] hover:border-[var(--accent)] transition-colors">
                 <h4 className="text-lg font-semibold text-[var(--text-primary)]">
                   {exp.role} @ <span className="text-[var(--accent)]">{exp.company}</span>
                 </h4>
-                <p className="text-sm text-[var(--text-faint)] mt-1">{exp.period}</p>
+                <p className="text-sm text-[var(--text-faint)] mt-1 font-mono">{exp.period}</p>
                 <p className="text-[var(--text-muted)] mt-3 leading-relaxed text-[15px]">{exp.description}</p>
                 {exp.link && (
                   <a
@@ -233,13 +261,13 @@ export default function HomePage() {
             {certifications.map((cert, idx) => (
               <div
                 key={idx}
-                className="flex items-center justify-between p-4 bg-[var(--bg-secondary)] rounded-lg border border-[var(--border)]"
+                className="flex items-center justify-between p-4 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-all hover:shadow-md"
               >
                 <div>
                   <h4 className="font-medium text-[var(--text-primary)]">{cert.name}</h4>
                   <p className="text-sm text-[var(--text-faint)]">{cert.issuer}</p>
                 </div>
-                <span className={`text-xs px-3 py-1 rounded-full ${
+                <span className={`text-xs px-3 py-1 rounded-full font-medium ${
                   cert.status === 'In Progress' 
                     ? 'bg-amber-500/20 text-amber-600 dark:text-amber-400' 
                     : 'bg-[var(--bg-card)] text-[var(--text-muted)]'
@@ -251,9 +279,44 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Contact Section - Spiderman Meme */}
+        <section id="contact" className="mt-20 scroll-mt-8">
+          <div className="py-8 sm:py-12 px-4 sm:px-8 bg-[var(--bg-secondary)] rounded-2xl border border-[var(--border)]">
+            <div className="max-w-2xl mx-auto text-center">
+              <div className="flex justify-center gap-8 sm:gap-16 text-[var(--text-faint)] text-xs sm:text-sm mb-3">
+                <p className="max-w-[120px] sm:max-w-[140px]">You looking for a good developer</p>
+                <p className="max-w-[120px] sm:max-w-[140px]">Me looking for a good job</p>
+              </div>
+              
+              <div className="relative w-full max-w-sm sm:max-w-md mx-auto h-[200px] sm:h-[250px] md:h-[300px]">
+                <Image
+                  src={memeImage}
+                  alt="spiderman-meme"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+
+              <div className="mt-6 space-y-2">
+                <p className="text-lg sm:text-xl font-semibold text-[var(--text-primary)]">Let&apos;s get in touch!</p>
+                <p className="text-[var(--text-muted)] text-sm sm:text-base">Feel free to slide into my DMs.</p>
+              </div>
+
+              <button
+                onClick={handleEmailClick}
+                className="mt-6 inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-3.5 bg-[#2bd2a6] hover:bg-[#25b892] text-[#1a1a1a] font-bold rounded-full transition-all hover:-translate-y-1 hover:shadow-xl text-sm sm:text-base"
+              >
+                <Mail size={18} className="sm:w-5 sm:h-5" />
+                <span>hey@gauravsh.in</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
         {/* Recent Blogs & Reads Section */}
         <section className="mt-20">
-          <div className="grid md:grid-cols-2 gap-16">
+          <div className="grid md:grid-cols-2 gap-12">
             {/* Recent Blog Posts */}
             <div>
               <div className="flex items-center gap-3 mb-3">
@@ -271,15 +334,15 @@ export default function HomePage() {
               <p className="text-[var(--text-muted)] text-sm mb-5">Things I have written recently.</p>
               <ul className="space-y-3">
                 {recentBlogs.map((blog, idx) => (
-                  <li key={idx} className="flex items-start gap-2 text-sm">
-                    <span className="text-[var(--text-faint)]">•</span>
+                  <li key={idx} className="flex items-start gap-2 text-sm group">
+                    <span className="text-[var(--accent)]">•</span>
                     <span className="text-[var(--text-faint)] font-mono text-xs whitespace-nowrap">{blog.date}</span>
                     <span className="text-[var(--text-faint)]">:</span>
                     <a 
                       href={blog.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[var(--link)] hover:underline leading-tight"
+                      className="text-[var(--link)] hover:text-[var(--accent)] transition-colors leading-tight"
                     >
                       {blog.title}
                     </a>
@@ -293,14 +356,14 @@ export default function HomePage() {
               <div className="flex items-center gap-3 mb-3">
                 <h3 className="font-serif text-2xl text-[var(--text-primary)] italic">Recent reads</h3>
                 <span className="text-[var(--text-faint)]">•</span>
-                <span className="text-[var(--link)] text-sm">Bookshelf →</span>
+                <span className="text-[var(--link)] text-sm cursor-pointer hover:underline">Bookshelf →</span>
               </div>
               <p className="text-[var(--text-muted)] text-sm mb-5">Papers & books I have read recently.</p>
               <ul className="space-y-3">
                 {recentReads.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-2 text-sm">
-                    <span className="text-[var(--text-faint)]">•</span>
-                    <span className="text-[var(--link)]">{item.title}</span>
+                    <span className="text-[var(--accent)]">•</span>
+                    <span className="text-[var(--link)] hover:text-[var(--accent)] transition-colors cursor-pointer">{item.title}</span>
                   </li>
                 ))}
               </ul>
@@ -316,7 +379,7 @@ export default function HomePage() {
             {currentlyReading.map((book, idx) => (
               <div
                 key={idx}
-                className="p-4 bg-[var(--bg-secondary)] rounded-lg border border-[var(--border)]"
+                className="p-4 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-md transition-all"
               >
                 <h4 className="font-medium text-[var(--text-primary)] text-sm">{book.title}</h4>
                 <p className="text-[var(--text-faint)] text-xs mt-1">by {book.author}</p>
@@ -325,42 +388,24 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Contact Section - Spiderman Meme */}
-        <section className="mt-24">
-          <div className="text-center">
-            <div className="flex justify-around text-[var(--text-faint)] text-sm mb-2">
-              <p className="max-w-[140px]">You looking for a good developer</p>
-              <p className="max-w-[140px]">Me looking for a good job</p>
-            </div>
-            
-            <div className="relative w-full max-w-md mx-auto h-[280px] md:h-[320px]">
-              <Image
-                src={memeImage}
-                alt="spiderman-meme"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-
-            <div className="mt-6 space-y-2">
-              <p className="text-xl font-semibold text-[var(--text-primary)]">Let's get in touch.</p>
-              <p className="text-[var(--text-muted)]">Feel free to slide into my DMs.</p>
-            </div>
-
-            <button
-              onClick={handleEmailClick}
-              className="mt-6 mx-auto flex items-center justify-center gap-3 px-8 py-4 bg-[#2bd2a6] hover:bg-[#25b892] text-[#1a1a1a] font-semibold rounded-xl transition-all hover:-translate-y-0.5"
-            >
-              <Mail size={20} />
-              <span>hey@gauravsh.in</span>
-            </button>
-          </div>
-        </section>
-
         {/* Footer */}
-        <footer className="mt-24 text-center text-[var(--text-faint)] text-sm pt-8 border-t border-[var(--border)]">
-          <p>© {new Date().getFullYear()} Gaurav. All rights reserved.</p>
+        <footer className="mt-24 pt-8 border-t border-[var(--border)]">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 pb-8">
+            <p className="text-[var(--text-faint)] text-sm">© {new Date().getFullYear()} Gaurav. All rights reserved.</p>
+            <div className="flex items-center gap-4">
+              {socialLinks.slice(0, 4).map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`text-[var(--text-faint)] transition-colors ${link.color}`}
+                >
+                  <link.icon size={18} />
+                </a>
+              ))}
+            </div>
+          </div>
         </footer>
       </div>
     </main>
